@@ -190,80 +190,79 @@ JavaScript под названием [EQCSS.js][11]. Плюс, поддержк�
 всех ширин от 150 до 2000 пикселей, то куда его на сайте ни помести, он везде
 будет выглядеть отлично.
 
-### Шаблонизаторы
+### Компоненты шаблона
 
+На этапе прототипа сайта часто происходит реорганизация элементов дизайна, а
+сам дизайн представляется как набор модульных компонентов. Если вы на этом этапе
+написали медиа-выражение, иногда может оказаться, что это **преждевременная
+оптимизация**. Разрабатывая с использованием выражений для элементов, вы
+оставляете условия адаптивности независимыми от макета, что даёт вам больше
+гибкости и возможность перемещать элементы без необходимости сильно переписывать
+стили. 
 
+Мне кажется наиболее полезным использование выражений для элементов при
+разработке дизайна или набросков таких вещей как:
 
-#### Template Builders {#template-builders}
+*   меню навигации;
+*   модальные диалоги;
+*   формы регистрации и авторизации;
+*   подвалы;
+*   блоки расценок;
+*   лендинги;
+*   таблицы;
+*   кнопки вкладок;
+*   аккордионы;
+*   боковые панели;
+*   медиапроигрыватели;
+*   блоки отзывов.
 
-When you’re prototyping a website, it’s common to reorganize design
-elements on the page and to think about the design as a collection of modular 
-components. If you’ve written CSS media queries, sometimes this can be a case of
-**premature optimization**. By designing with element queries, you keep
-responsive conditions layout-independent, giving you a lot more flexibility to 
-move things around without having to rework styles as much.
+Любой элемент дизайна можно изолировать и переместить куда угодно — с одной
+страницы на другую, или с одного сайта на другой.
 
-Things I have found especially useful to have designed or mocked up using
-element queries include:
+### Поддержка устройств
 
-*   navigation bars,
-*   modals,
-*   sign-up and log-in forms,
-*   footers,
-*   pricing charts,
-*   landing pages,
-*   tables,
-*   tab boxes,
-*   accordions,
-*   sidebar widgets,
-*   media players,
-*   testimonial sections.
+Одна из проблем, с которыми вы сталкиваетесь при поддержке мобильного веба — это
+разнообразие устройств. Рынок устройств сегодня более фрагментирован, чем
+когда-либо, и новые планшеты и телефоны появляются каждый день. Мы уже не в
+состоянии поддерживать список поддерживаемых браузеров и устройств, так что
+исключительно важно знать наверняка, что дизайн работает везде, даже на ещё не
+выпущенных устройствах.
 
-Any design element can be “scoped” and ported anywhere — page to page or
-website to website.
+Используя выражения для элементов, вы можете разрабатывать сайты лучше и
+избавиться от различий между браузерами.
 
-#### Device Support {#device-support}
+Есть большое количество недавних статей про необходимость выражений для
+элементов, и в них есть множество примеров их применения в деталях. Так давайте
+же разберёмся, как их использовать!
 
-One of the problems you’re faced with when supporting the web on mobile
-devices is the abundance of hardware. The market for devices is more fragmented 
-than ever before, and new devices are appearing every day. We can no longer 
-maintain a list of the browsers and devices we support, so it’s crucial to know 
-that a design works everywhere, even on devices that haven’t been released yet.
+## Как писать выражения для элементов
 
-By using element queries, you can design websites in a better way and eliminate
-some of these cross-browser differences.
+Начать работать с EQCSS легко. Всё, что вам нужно для того, чтобы использовать
+синтаксис EQCSS,— это [подключить скрипт][15] где-либо в HTML.
 
-Many articles written recently about the need for element queries illustrate
-many of the use cases in detail. So, let’s get on with how to use them!
+### Загрузка EQCSS.js
 
-### How To Write Element Queries {#how-to-write-element-queries}
-
-Getting started with EQCSS is easy. All you need to start using EQCSS syntax is
-to[include the JavaScript][15][8][16] somewhere in your HTML.
-
-#### Downloading EQCSS.js {#downloading-eqcss}
-
-If you want to clone the EQCSS project from GitHub, you can type:
+Если вы хотите склонировать проект EQCSS GitHub, вы можете набрать:
 
     git clone https://github.com/eqcss/eqcss.git
 
-If you use npm, you can add EQCSS to your project with the following command:
+Если вы используете npm, вы можете добавить EQCSS в проект следующей командой:
 
     npm install eqcss
 
-#### Adding EQCSS.js to Your HTML {#adding-eqcss-to-your-html}
+### Добавление EQCSS.js в HTML
 
-Once you have downloaded EQCSS, you can add it to your HTML with a `script` tag
-:
+После того, как вы загрузите EQCSS, вы можете подключить его в HTML используя
+тег `script`:
 
     <script src="EQCSS.js"></script>
 
-This file (`EQCSS.js`) includes support for all current browsers, including IE
-9 and up. To support IE 8, we would have had to have used a lot of other 
-polyfills. Keep in mind that IE 8 doesn’t even support CSS media queries without
-a polyfill, so it’s pretty amazing that we were able to get element queries 
-working there as well. To include IE 8 support for a website using EQCSS, add 
-the following link before your link to the main plugin:
+Этот файл (`EQCSS.js`) включает в себя поддержку всех современных браузеров,
+включая IE9 и выше. Для поддержки IE8 нам пришлось бы использовать кучу других
+полифиллов. Имейте ввиду, что в IE 8 даже медиа-выражения без полифиллов не
+поддерживаются, поэтому достаточно удивительно, что нам удалось заставить там
+работать выражения для элементов. Чтобы добавить EQCSS поддержку IE8, добавьте
+следующую строчку перед местом подключения основного плагина:
 
     <!‐‐[if lt IE 9]><script src="EQCSS‐polyfills.js"></script><![endif]‐‐>
 
@@ -929,4 +928,3 @@ Happy hacking!
  [53]: https://twitter.com/intent/tweet?original_referer=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&source=tweetbutton&text=The%20Search%20For%20The%20Holy%20Grail%3A%20How%20I%20Ended%20Up%20With%20Element%20Queries%2C%20And%20How%20You%20Can%20Use%20Them%20Today&url=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&via=smashingmag
 
  [54]: http://www.facebook.com/sharer/sharer.php?u=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
- 
