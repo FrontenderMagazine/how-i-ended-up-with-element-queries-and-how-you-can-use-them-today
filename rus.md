@@ -31,7 +31,7 @@ CSS перед тем, как страница загрузится.
 ### Проблема
 
 Проблема такого подхода в том, что даже самые лучшие плагины часто **требуют
-настройки и конфигурации** под каждый используемый вами лейаут. К тому же,
+настройки и конфигурации** под каждый используемый вами макет. К тому же,
 если JavaScript пишет стили за вас, при рефакторинге или переиспользовании кода
 может быть трудно следить за тем, чтобы логика плагина работала правильно с
 вашими стилями CSS.
@@ -56,57 +56,56 @@ CSS перед тем, как страница загрузится.
 позволяющих разрабочикам использовать выражения для элементов несколькими
 различными способами.
 
-
 ### Что такое выражения для элементов?
 
-Выражения для элементов похожи на медиа-выражения, но их правила применяются к
-свойствам конкретного элемента, а к порту просмотра браузера.
+Выражения для элементов похожи на медиа-выражения, с тем отличием, что правила
+зависят от свойств конкретного элемента, а не порта просмотра браузера.
 
-### How EQCSS Came About {#how-eqcss-came-about}
+## Как появился EQCSS
 
-In late 2013, I found myself working on the front end of a Ruby on Rails web
-app. The app needed to display detailed information to users, and the goal was 
-to build a responsive interface that would perform equally well on phones, 
-tablets and desktop browsers. This posed a few challenges, one of which was that
-much of the important content to be displayed was best displayed in tables — yes,
-actual`table` elements (to show financial transactions, sports records, etc
-.).<figure>
+В конце 2013 мне довелось работать над фронтендом веб-приложения на Ruby on
+Rails. Приложение должно было отображать пользователям подробную информацию, и
+целью стала разработка адаптивного интерфейса, который бы одинаково подходил и
+для телефонов, и для планшетов, и для десктопов. Это вызвало ряд затруднений,
+оно из которых было в том, что большую часть важной информации предполагалось
+отображать в виде таблиц — да, самых настоящих элементов `table` (финансовые
+транзакции, спортивные рекорды и т.п.).
 
-![][3][2][4]  
-<figcaption>The EQCSS project came to be as a result of research on element
-media queries. Now, it’s[finally released][5][3][6], and you can use it today
-. [Check the demos.][7][4][8]</figcaption></figure>
-I created responsive styles using media queries that displayed the `table`
-element correctly for browsers of different sizes. But as soon as one of those 
-responsive tables was displayed in a template that contained a sidebar, suddenly
-all of my responsive breakpoints turned into responsive*broke*points. They
-simply didn’t account for the 200-pixel-wide sidebar, causing things to overlap 
-and appear broken.
+![][3]
+_Проект EQCSS появился как результат исследования выражений для элементов.
+Теперь, когда он [наконец выпущен][5], вы тоже можете им воспользоваться.
+[Посмотреть демо.][4]_
 
-Another obstacle: User names varied in length from 3 to 20 characters, and I
-found myself wishing I could automatically**adjust the font size of each user
-name based on the number of characters** it contained. I needed to put each
-user name in the sidebar, and it was tricky to pick a font size small enough to 
-fit a 20-character user name but large enough for the viewer to see a 3-
-character user name.
+Я написал адаптивные стили с использованием медиавыражений, которые отображали
+элемент `table` правильно для браузеров различных размеров. Но как только одна
+из таких таблиц оказывалась в шаблоне, содержащем боковую панель, внезапно
+все ключевые точки моих медиавыражений ломались. Они попросту не учитывали
+двухсотпиксельную боковую панель, элементы наползали друг на друга и всё
+выглядело сломанным.
 
-To work around problems like these, I would often find myself copying entire
-media queries, duplicating large sections of my code base, simply because I 
-needed a smarter way to apply the responsive styles in each layout. I relied on 
-JavaScript as another makeshift solution, writing many nearly identical 
-functions that would watch a page and apply styles in places where CSS couldn’t 
-reach. After a while, the added burden of all of this duplicate code began to 
-weigh down the code base and made changes difficult to do.
+Другое препятствие: имена пользователей могли содержать от 3 до 20 букв, и я
+осознал, что хочу. чтобы **размер шрифта имени пользователя изменялся в
+зависимости от числа символов** в нём. Мне нужно было располагать все имена
+пользователей в боковой панели, и было нелегко подобрать такой размер шрифта,
+чтобы имена из 20 букв вместились, а трёхбуквенные хорошо читались.
 
-I knew there had to be a better solution, and after a while I began to think: I
-don’t need media queries — what I need are element queries!
+Чтобы решить проблемы наподобие этих, я часто копировал медиавыражения целиком,
+дублировал большие куски кода, просто из-за того, что мне не хватало более
+разумного способа применения адаптивных стили к каждому макету. Я также
+полагался на JavaScript, но такое решение тоже не было красивым, я писал почти
+идентичные функции, каждую для своей страницы, применяющие стили к тем местам,
+с которыми CSS не справлялся. Позже кодовая база распухла от всего этого
+копипаста, и вносить изменения в код стало затруднительно.
 
-#### Research and Development {#research-and-development}
+Я знал, должно же быть решение получше. И через какое-то время я начал думать,
+что мне не нужны медиазапросы, то, что мне нужно — это выражения для элементов!
 
-Through 2014, I began experimenting with different ways to inform CSS about the
-properties of elements as they appeared on the page, so that I could apply 
-better styles. I was hoping to discover an approach that would allow me to write
-styles that combined the beauty of CSS with the power of JavaScript.
+### Исследование и разработка
+
+С начала 2014 я начал экспериментировать с различными способами сообщить CSS о
+свойствах отображаемого на странице элемента, чтобы я мог улучшить мои стили.
+Я надеялся найти подход к написанию стилей, сочетающий красоту CSS и мощь
+JavaScript.
 
 Some abandoned approaches I gave up on include adding attributes to HTML tags
 in order to add responsive support, and trying to find ways to embed entire 
