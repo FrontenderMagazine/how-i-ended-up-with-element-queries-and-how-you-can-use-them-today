@@ -173,22 +173,26 @@ JavaScript под названием [EQCSS.js][11]. Плюс, поддержк�
 полифилл выпущены под [лицензией MIT][13], их использование и бесплатно для
 всех.
 
-### Use Cases For Element Queries {#use-cases-for-element-queries}
+## Области применения выражений для элементов
 
-#### Plugin Developers {#plugin-developers}
+### Разработка плагинов
 
-When creating UI components and widgets, developers often find themselves
-limited by media queries. We often have to choose between building many 
-different layouts that can be configured by the person using the plugin, and 
-simplifying the interface to the point that you can build a one-size-fits-most 
-solution.
+При создании интерфейсных компонентов и виджетов разработчики часто оказываются
+ограниченными медиа-запросами. Нам часто приходится делать выбор между тем,
+чтобы создавать множесто различных лейаутов, настраиваемых при помощи плагина, и
+тем, чтобы сделать интерфейс как можно проще, так что одно решение будет
+работать в большинстве ситуаций.
 
-But when designing plugins and interfaces with element queries, we can easily
-write responsive styles that cover all of the situations we anticipate, making 
-them truly bulletproof, no matter what content the user puts inside or where the
-plugin shows up. Suppose we could style a widget with layouts ranging from 150 
-to 2000 pixels wide. Then, no matter where that widget is displayed on a website,
-it would always look great.
+Однако, при разработке плагинов и интерфейсов с выражениями для элементов мы
+с лёгкостью можем писать адаптивные стили для любой нужной нам стиуации.
+Получается безотказное решение, неважно, какое содержимое пользователь решит
+поместить в блок, или где плагин находится. Если мы зададим стили виджета для
+всех ширин от 150 до 2000 пикселей, то куда его на сайте ни помести, он везде
+будет выглядеть отлично.
+
+### Шаблонизаторы
+
+
 
 #### Template Builders {#template-builders}
 
