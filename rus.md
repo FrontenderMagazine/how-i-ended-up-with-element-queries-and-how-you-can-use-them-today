@@ -876,91 +876,57 @@ Happy hacking!
 
  [1]: https://www.smashingmagazine.com/2013/06/media-queries-are-not-the-answer-element-query-polyfill "Media Queries Are Not The Answer: Element Query Polyfill"
 
- [2]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#1
- [3]: img/eqcss-logo-opt.png ""
+ [3]: img/eqcss-logo-opt.png "Логотип EQCSS"
 
- [4]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#2
  [5]: https://github.com/eqcss/eqcss
 
- [6]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#3
  [7]: https://github.com/eqcss/eqcss#element-query-demos
-
- [8]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#4
 
  [9]: https://discourse.wicg.io/t/element-queries/26 "WICG Discourse Forum Element Queries Thread"
 
- [10]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#5
  [11]: https://github.com/eqcss/eqcss "EQCSS.JS"
 
- [12]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#6
  [13]: https://tldrlegal.com/license/mit-license "MIT License at TLDR Legal"
 
- [14]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#7
  [15]: http://elementqueries.com/EQCSS.js "EQCSS.js"
-
- [16]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#8
 
  [17]: https://drafts.csswg.org/selectors-4/#relational "Description of Has in CSS Selectors Level 4"
 
- [18]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#9
  [19]: https://api.jquery.com/has-selector/ "jQuery Has selector"
 
- [20]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#10
  [21]: http://caniuse.com/#feat=css-has "Can I use browser support for Has"
 
- [22]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#11
  [23]: http://codepen.io/tomhodgins/pen/xOZGOq "This selector demo"
 
- [24]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#32
  [25]: http://codepen.io/tomhodgins/pen/VjeLjy "Parent selector demo"
 
- [26]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#33
  [27]: http://codepen.io/tomhodgins/pen/RRrPRy "Root selector demo"
 
- [28]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#34
  [29]: http://codepen.io/tomhodgins/pen/gMPpMd "Prev selector demo"
 
- [30]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#35
  [31]: http://codepen.io/tomhodgins/pen/PzZqzy "Next selector demo"
-
- [32]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#36
 
  [33]: https://blogs.msdn.microsoft.com/ie/2008/10/16/ending-expressions/ "MSDN Blogs Ending Expressions"
 
- [34]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#38
-
  [35]: https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/ "CSS specificity things you should know"
-
- [36]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#39
 
  [37]: https://www.smashingmagazine.com/2016/03/houdini-maybe-the-most-exciting-development-in-css-youve-never-heard-of/ "Houdini may be the most exciting development in CSS youve never heard of"
 
- [38]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#40
  [39]: http://bradfrost.com/blog/post/atomic-web-design/ "Atomic web design"
 
- [40]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#41
  [41]: https://github.com/eqcss/eqcss "EQCSS on Github"
 
- [42]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#70
-
- [43]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#71
  [44]: http://elementqueries.com "element queries dot com"
-
- [45]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#72
 
  [46]: http://codepen.io/search/pens/?q=eqcss&limit=all&order=newest&depth=everything&show_forks=true "Pens on Codepen using EQCSS"
 
- [47]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#73
-
  [48]: http://codepen.io/pen?template=gagyrz "EQCSS batteries included template"
 
- [49]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#74
  [50]: http://elementqueries.com/repl.html
-
- [51]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/#75
 
  [52]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
 
  [53]: https://twitter.com/intent/tweet?original_referer=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&source=tweetbutton&text=The%20Search%20For%20The%20Holy%20Grail%3A%20How%20I%20Ended%20Up%20With%20Element%20Queries%2C%20And%20How%20You%20Can%20Use%20Them%20Today&url=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&via=smashingmag
 
  [54]: http://www.facebook.com/sharer/sharer.php?u=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
+ 
