@@ -530,40 +530,52 @@ EQCSS поддерживает новые типы адаптивных усло
       }
     }
 
-A number of new selectors are supported by the EQCSS syntax that aren’t in
-regular CSS. Here is the full list:
+В синтаксе EQCSS поддерживается ряд селекторов, которых нет в обычном CSS.
+Вот их полный список:
+the full list:
 
-*   `$this`  
-    [demo][23][32][24] 
-*   `$parent`  
-    [demo][25][33][26] 
-*   `$root`  
-    [demo][27][34][28] 
-*   `$prev`  
-    [demo][29][35][30] 
-*   `$next`  
-    [demo][31][36][32] 
+*   `$this`
 
-These selectors will only work in an element query.
+    [демо][23]
 
-#### Opening the Portal Between JavaScript and CSS {#opening-the-portal-between
--javascript-and-css
-}
+*   `$parent`
 
-The last and final feature of EQCSS is the wildest of all: `eval('')`. Through
-this doorway lies all the power of JavaScript, accessible from CSS. Though 
-JavaScript can apply styles to elements, it currently has a hard time reaching 
-some things, such as the`:before` and `:after` pseudo-elements. But what if CSS
-could reach JavaScript from the other direction? Instead of JavaScript setting 
-CSS properties, what if CSS could be aware of JavaScript?
+    [демо][25]
 
-This is where `eval('')` comes in. You can access and evaluate any JavaScript,
-whether to use the value of a JavaScript variable in your CSS, to execute a 
-JavaScript one-liner (like`eval('new Date().getFullYear()')`), to ascertain
-values about the browser and other elements that JavaScript can measure (like
-`eval('innerHeight')`) or to run a JavaScript function and use the value it
-returns in your CSS styles. Here’s an example that outputs`© 2016` in a 
-`<footer>` element:
+*   `$root`
+
+    [демо][27]
+
+*   `$prev`
+
+    [демо][29]
+
+*   `$next`
+
+    [демо][31]
+
+Эти селекторы работают только внутри выражений для элементов.
+
+### Открываем портал между JavaScript и CSS
+
+*   `eval('')`
+
+    [демо](http://codepen.io/tomhodgins/pen/WxrvxB "Eval demo")
+
+Последняя возможность EQCSS самая крутая из всех — `eval('')`. Благодаря ней
+вся мощь JavaScript становится доступной из CSS. Хотя JavaScript и может
+применять стили к элементам, но к некоторым местам ему пробраться трудно,
+например к псевдоэлементам `:before` и `:after`. Но что, если CSS смог бы
+добраться до JavaScript с другой стороны? Что если JavaScript не задавал бы
+никаких свойств CSS, а напротив, CSS знал бы о существовании JavaScript?
+
+В этом нам поможет `eval('')`. Вы можете выполнять любой JavaScript, можно
+обратиться к переменной JavaScript в CSS; запустить однострочник на
+JavaScript (вроде `eval('new Date().getFullYear()')`); или считать какие-либо
+значения, связанные с браузером и другими элементами, к которым JavaScript имеет
+доступ (например, `eval('innerHeight')`); или можно запустить функцию и
+использовать в CSS её результат. Вот пример, который выводит `© 2016` в элементе
+`<footer>`:
 
     @element 'footer' {
       $this:after {
@@ -571,15 +583,14 @@ returns in your CSS styles. Here’s an example that outputs`© 2016` in a
       }
     }
 
-While evaluating JavaScript, `eval('')` also works from the context of the
-actively scoped element, the same element to which styles for`$this` apply. You
-can use`$it` in JavaScript written in `eval('')` as a placeholder for the
-scoped element if it helps you to structure the code, but if omitted, it will 
-work the same way. For example, let’s say we have a`div` with the word “hello
-” in it. The following code would output “hello hello
-”:
+При выполнении JavaScript, `eval('')` работает в контексте выбранного элемента,
+того самого, к которому применяются стили `$this`. Вы можете использовать
+в скрипте внутри `eval('')` переменную  `$it` в качестве ссылки на элемент, если
+вам хочется упорядочить код. Но даже если вы не станете её использовать, всё
+будет работать точно так же. Для примера предположим, что у нас есть `div`,
+содержащий слово «привет». Следующий код выведет «привет привет»:
 
-    <div>hello</div>
+    <div>привет</div>
     <style>
       @element 'div' {
         div:before {
@@ -588,9 +599,9 @@ work the same way. For example, let’s say we have a`div` with the word “hell
       }
     </style>
 
-Here, `$it` refers to the `div` because it’s the currently scoped selector.
-You could also omit the`$it` and write the following code to display the same
-thing:
+Здесь `$it` ссылается на `div`, потому что это селектор текущей области
+определения. Можно даже не писать `$it`, следующий код будет делать то же
+самое:
 
     @element 'div' {
       div:before {
@@ -598,35 +609,33 @@ thing:
       }
     }
 
-`eval('')` can be helpful in situations where CSS isn’t aware of measurements
-or events that happen on the page after it has loaded. For example, iframe 
-elements used for embedding YouTube videos come with a specified width and 
-height. While you can set the width to`auto` in CSS, there’s no easy way to
-maintain the correct aspect ratio of width to height when the video expands to 
-fill the available space.
+`eval('')` может быть полезен в ситуациях, когда CSS ничего не знает об
+измерениях или событиях, произошедших на странице с момента загрузки. К примеру,
+элементы iframe, использющиеся при вставке видео с YouTube, идут с определённой
+шириной и высотой. Хотя вы и можете установить `width: auto` в CSS, поддерживать
+правильное соотношение сторон проблематично, если видео занимает всё доступное
+место.
 
-A common workaround for maintaining responsive aspect ratios while scaling is
-to place the content that needs to maintain its aspect ratio in a wrapper, and 
-then add padding to the wrapper with a value based on the ratio of width to 
-height that you want to maintain. This works, but requires you to know the 
-aspect ratio of all videos in advance, as well as requires more HTML markup (a 
-wrapper element) for each video that you want to embed responsively. Multiply 
-that across every website that has responsive videos, and that’s a lot of cruft 
-that wouldn’t need to be there if CSS were just a little smarter.
+Часто эта проблема при адаптивной вёрстке решается так: содержимое, соотношения
+сторон которого нужно сохранить, помещается в обёртку, а обёртке задаётся
+отбивка, значение которой рассчитано исходя из нужного соотношения сторон. Это
+работает, но нужно знать соотношения сторон всех видео заранее, да ещё и нужно
+писать больше кода HTML (обёртку) для каждого вставленного видео. И весь этот
+шлак был бы не нужен, будь CSS чуточку поумнее.
 
-Maybe a better approach to responsive aspect ratios involves placing each video
-in a wrapper without padding and then writing a JavaScript library that 
-calculates the aspect ratio of each video it finds and applies the correct 
-amount of padding to each wrapper.
+Может быть, более разумным подходом было бы завернуть видео в обёртки без
+отбивки, а затем написать библиотеку на JavaScript, которая считала бы
+соотношения сторон каждого видео, а затем применяла бы нужно количество отбивки
+каждой обёртке.
 
-But what if CSS *could* access those measurements directly? Not only could we
-consolidate the CSS for all different aspect ratios into one rule, but if we 
-could evaluate it once the page loads, we could write one rule that responsively
-resizes any video we ever give it in future. And we could do it all without any 
-wrappers!
+Но что, если бы CSS *мог* иметь доступ к этим измерениям напрямую? Мы смогли бы
+не только объединить весь CSS для всех соотношений сторон в одно правило, но
+к тому же, если бы это правило вычислялось по загрузке страницы, могли бы
+написать одно правило для всех видео, которые у нас когда-либо появятся.
+И нам даже не пришлось бы использовать обёртки!
 
-If this seems too good to be true, check this out. Here’s how simple it is to
-write wrapper-free responsively resizing iframe elements in EQCSS:
+Если это звучит слишком хорошо, чтобы быть правдой, то зацените. Вот, как
+просто написать адаптивное изменение размеров iframe без обёрток в EQCSS:
 
     @element 'iframe' {
       $this {
@@ -636,37 +645,36 @@ write wrapper-free responsively resizing iframe elements in EQCSS:
       }
     }
 
-Here, `width` and `height` refer to the `width=""` and `height=""` attributes
-in the iframe in HTML. JavaScript can perform the calculation of
-`(width/height)`, which gives us the aspect ratio; and to apply it at any width
-, we would just divide the current width of the iframe element by the ratio.
+Здесь `width` и `height` — это атрибуты `width=""` и `height=""` элемента
+`iframe` в HTML. JavaScript вычисляет `(width/height)`, что даёт нам соотношение
+сторон. И чтобы применить его к любой ширине, мы просто делим текущую ширину
+элемента на это соотношение.
 
-This has the succinctness and legibility of CSS, and all the power of
-JavaScript. No extra wrappers required, no extra classes and no extra CSS.
+Краткость и читаемость CSS и вся мощь JavaScript. Никаких лишних обёрток,
+никаких лишних классов, никакого лишнего CSS.
 
-Be careful with `eval('')`, though. [There’s a reason][33][38][34] why CSS
-expressions were considered dangerous in the past, and there’s also a reason why
-we tried out the idea. If you aren’t careful with how many elements you are 
-applying them to on the page or with how frequently you are recalculating styles,
-then JavaScript could end up running things hundreds of times more than needed. 
-Thankfully, EQCSS allows us to invoke`EQCSS.apply()` or `EQCSS.throttle()` to
-recalculate the styles manually, so that we have more control over when styles 
-are updated.
+Но будьте осторожны с `eval('')`. [Неспроста][33] CSS-выражения (CSS
+expressions) раньше считались опасными, и также неспроста мы тщательно
+исследовали эту идею. Если вы не будете следить за тем, к какому количеству
+элементов на странице они применяются, и за тем, как часто вы пересчитываете
+стили, это может закончится тем, что JavaScript придётся делать в сотни раз
+больше работы, чем это требуется. К счастью, EQCSS позволяет вызывать
+`EQCSS.apply()` или `EQCSS.throttle()`, чтобы пересчитать стили вручную, и у нас
+больше контроля над тем, когда стили обновляются.
 
-#### The Danger Zone! {#the-danger-zone}
+### Опасная зона!
 
-Other problems can occur if you create queries with conflicting conditions or
-styles. EQCSS, like CSS, is read top to bottom using a
-[hierarchy of specificity][35][39][36]. Although CSS is a declarative language
-, it does contain some advanced features. It’s only a couple steps away from 
-being Turing-complete as a programming language. So far, debugging CSS has been 
-a pretty straightforward affair, but EQCSS shifts CSS from being simply an 
-interpreted declarative language into being a**dynamic style sheet language**
-with an additional layer of interpretation between CSS and the browser. With 
-this new territory comes a variety of potential new pitfalls.
+Другие неприятности могут произойти, если вы создаёте выражения с конфликтующими
+условиями или стилями. EQCSS, как и CSS, читается сверху вниз с учётом
+[иерархии специфичности][35]. Хотя CSS и декларативный язык, в нём есть и
+продвинутые возможности. В качестве языка прграммирования он всего лишь в паре
+шагов от полноты по Тьюрингу. До сих пор отладка CSS была достаточно
+бесхитростным занятием, но EQCSS превращает CSS из простого интерпретируемого
+языка в **динамический язык стилей** с дополнительным слоем интерпретации между
+CSS и браузером. На новой территории нас, возможно, ожидают и новые западни.
 
-Here’s an example of a reciprocal loop in EQCSS, something that normal CSS
-media queries are immune to by design:
+Вот пример двустороннего зацикливания в EQCSS, того, чем обычные медиа-выражения
+в CSS не могут страдать в принципе:
 
     @element '.widget' and (min‐width: 300px) {
       $this {
@@ -674,10 +682,10 @@ media queries are immune to by design:
       }
     }
 
-I call this `jekyll: hide;` CSS. But in addition to one style continually
-triggering itself, there’s also the possibility of writing multiple queries that
-trigger each other, in what we call a “double-inverted reciprocal loop,” the 
-nastiest of all:
+Я называю это `jekyll: hide;` CSS. Но в дополнение к тому, что один стиль может
+постоянно вызывать себя, есть ещё и возможность того, что несколько выражений
+будут вызывать друг друга, находясь в состоянии, которое мы называем
+«дважды инвертированным двусторонним зацикливанием», самым мерзким из всех:
 
     @element '.widget' and (min‐width: 400px) {
       $this {
@@ -690,20 +698,21 @@ nastiest of all:
       }
     }
 
-In theory, that unfortunate widget would be stuck in a loop, resizing between
-200 and 500 pixels until the end of time, unable to settle on a width. For cases
-like this, EQCSS simply computes the rules in the order they are evaluated, 
-awards the winner and moves on. If you were to rearrange the order in which 
-these rules appear, the latter style would always win if they are of equal 
-specificity.
+В теории, этот несчастный виджет не сможет определиться с шириной и застрянет в
+цикле, меняя ширину с 200 на 500 пикселей и обратно до скончания времён. В
+случаях наподобие этого EQCSS просто рассчитывает правила в том порядке, в каком
+они выполняются, награждает победителя и идёт дальше. Если у правил одинаковая
+специфичность, и вы поменяете их порядок, последний стиль будет всегда
+побеждать.
 
-Some people say that the ability to create loops (or even double-inverted
-reciprocal loops) is a design flaw, but in order to prevent loops from being 
-possible, you would need to limit the power of EQCSS in a way that would remove 
-most of the value that the syntax provides. On the other hand, creating infinite
-loops in JavaScript is very easy, but that’s not viewed as a flaw of the 
-language — it’s seen as evidence of its power! It’s the same with element 
-queries.
+Некоторые говорят, что возможность создавать зацикливания (или даже дважды
+инвертированные двусторонние зацикливания) означает недоработку при
+проектировании, но чтобы избежать зацикливаний, нам пришлось бы ограничить
+возможности EQCSS настолько, что пропала бы большая часть пользы от синтаксиса.
+С другой стороны, создать бесконечный цикл в JavaScript проще простого, но
+об этом не говорят, как об ошибке проектирования — наборот, об этом говорят
+как о доказательстве его больших возможностей! С выражениями для элементов то же
+самое.
 
 #### Debugging Element Queries {#debugging-element-queries}
 
