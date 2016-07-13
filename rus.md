@@ -714,24 +714,25 @@ CSS и браузером. На новой территории нас, возм
 как о доказательстве его больших возможностей! С выражениями для элементов то же
 самое.
 
-#### Debugging Element Queries {#debugging-element-queries}
+### Отладка выражений для элементов
 
-Currently, debugging element queries can feel a bit like debugging media
-queries before we had tools like the web inspector to show us the styles as they
-were computed on the page. For now, debugging and developing element queries 
-require the developer to maintain a mental model of what responsive behavior 
-should be happening. In the future, building EQCSS-aware developer tools might 
-be possible, but as of now, the developer tools in all major browsers are only 
-aware of the styles that EQCSS has already applied to the elements on the page, 
-and they are not aware of the responsive conditions that EQCSS is watching.
+На текущий момент отладка выражений для элементов по ощущениям немного похожа на
+отладку медиа-выражений во времена, когда у нас ещё не было утилит вроде
+веб-инспектора, показывающих, рассчитанные стили. Сейчас отладка и разработка
+выражений для элементов требует от разработчика держать в голове представление
+о том, как адаптивность себя ведёт. В будущем возможно появлятся инструменты
+отладки, принимающие во внимание EQCSS, но сейчас в отладчиках показываются
+только те стили, которые были применены к элементам на странице, и об условиях
+адаптивности EQCSS они понятия не имеют.
 
-### How To Design With Element Queries {#how-to-design-with-element-queries}
+## Как разрабатывать с выражениями для элементов
 
-The simplest way to make use of element queries is to convert existing designs
-using media queries into element queries, “liberating” elements and their 
-responsive styles from one layout and making it easy to reuse that code in other
-pages and projects. The following media query and element query could mean the 
-same thing:
+Самый просто способ начать пользоваться выражениями для элементов — это
+перевести существующие стили с использования медиа-выражений на выражения для
+элементов, «освобождая» элементы и их адаптивные стили от приявзки к одному
+лейауту и упрощая тем самым их повтоное использование на других страницах и в
+других проектах. Следующие медиа-выражения и выражения для элементов могут
+значить одно и то же:
 
     footer a {
       display: inline-block;
@@ -753,59 +754,59 @@ same thing:
       }
     }
 
-The difference is that, in the original example, the footer links stay as 
-`display: block` until the *browser* is at least 500 pixels wide. The second
-example, using element queries, would look the same but only if the`footer`
-element was full width.
+Разница в том, что в первом примере ссылки в подвале всегда остаются
+`display: block`, пока *браузер* шриной хотя бы 500 пикселей. Второй пример, с
+использованием  выражений для элементов, будет выглядеть так же, но только если
+сам элемент `footer` расположен во всю ширину.
 
-After liberating this style from its original media query, we can now place the
-footer in a container of any width and be sure that when the footer needs the 
-responsive style to be applied (i.e. when it is narrower than 500 pixels), it 
-will be applied.
+После освобожения этого стиля от его изначального медиа-запроса, мы теперь можем
+размещать подвал в контейнере любой ширины и быть уверенными, что когда к
+подвалу потребуется применить стили (т.е., когда он уже, чем 500 пикселей), они
+применятся.
 
-1.  Ensure that `EQCSS.js` is present in the destination document’s HTML.
-2.  Replace `@media` with `@element` in the CSS.
-3.  Add a CSS selector to the scope of each `@element` query.
-4.  Optional: Replace occurrences of the scoped element with `$this` in element
-    queries.
-   
+1.  Убедитесь, что `EQCSS.js` существует в коде HTML документа.
+2.  Замените `@media` на `@element` в CSS.
+3.  Добавьте селектор CSS в область определения каждого выражения `@element`.
+4.  Опционально: Замените в выражениях для элементов вхождения самого элемента
+    на `$this`. 
 
-Unless the design component you are converting was originally designed to
-display using the full width of the browser’s viewport, you will likely have to 
-tweak the breakpoints after converting to element queries.
+Если компонент не был изначально рассчитан на отображение на всю ширину порта
+просмотра браузера, после перевода его на выражения для элементов скорее всего
+придётся подредактировать ключевые точки.
 
-### Avoiding Lock-In {#avoiding-lock-in}
+## Готовность к переменам
 
-The experience of authoring EQCSS styles is similar to the experience of
-writing regular CSS: All of your favorite CSS properties and techniques are 
-still there, just with some additional features that help them work together in 
-new ways. Because EQCSS outputs standard CSS to the browser, any CSS feature 
-that your browser has built-in support for will work when used with EQCSS. If 
-someday features such as element queries and scoped styles are specified in CSS 
-and supported in browsers, then you would be able to begin using them in your 
-EQCSS code right away, while still relying on EQCSS for the other features that 
-the browser doesn’t yet support natively.
+Писать на EQCSS — это примерно то же самое, что писать на обычном CSS: все ваши
+любимые свойства и приёмы CSS остались теми же, просто добавились новые
+возможности, позволяющие им по-новому работать вместе. Из-за того, что EQCSS
+отдаёт браузеру стандартный CSS, любая особенность CSS, которую умеет ваш
+браузер, будет также работать и с EQCSS. Если когда-нибудь возможности вроде
+выражений для элементов или областей определения стилей появятся в стандарте
+CSS, и браузер начнёт их поддерживать, то вы сразу сможете использовать эти
+возможности в коде EQCSS, при этом всё ещё полагаясь на EQCSS в тех вещах,
+которые браузер ещё не поддерживает нативно.
 
-Because you can use EQCSS syntax both directly in CSS as well as in its own
-script, with the type`text/eqcss`, if CSS ever develops a syntax for native
-element queries, you would still be able to load EQCSS as a script and avoid 
-conflicts.
+Благодаря тому, что синтаксис EQCSS можно использовать как прямо из CSS, так и
+через подключенный скрипт с типом `text/eqcss`, если в CSS когда-нибудь появится
+нативный синтаксис выражений для элементов, вы всё равно сможете загружать EQCSS
+как скрипт и избежать конфликтов.
 
-Looking forward, one solution that browser developers are experimenting with
-right now is[Houdini][37][40][38], which would open up access for plugin
-developers to extend CSS in new ways, like adding support to the browser itself.
-Some day, it might be possible to write more efficient plugins that interpret 
-EQCSS syntax and bring these features to browsers in a more direct and 
-performant way than the current JavaScript library allows.
+Заглядывая в будущее, есть одно решение, с которым разработчики браузеров сейчас
+экспериментируют, [Houdini][37], оно дало бы разработчикам плагинов возможность
+расширять CSS по-новому, сродни добавлению поддержки в сам браузер. Возможно,
+когда-нибудь мы смоежм писать более эффективные плагины, интерпретирующие EQCSS,
+и привносящие эти возможности в брузер более прямым и быстрым способом, чем
+сейчас это позволяет библиотека на JavaScript.
 
-Yes, even though element queries provide many new and exciting ways to target
-elements with styles, media queries (though limited) will always run faster in 
-the browser than a style that relies on JavaScript to compute. However, CSS 
-media queries are for more than just styling HTML for screens. CSS media queries
-also support print-based queries and other ways that websites display 
-information. EQCSS can be used in conjunction with media queries for things like
-print styles, so there’s no need to retire the media query just because element 
-queries can now also be used!
+Да, хотя выражения для элементов и приносят много новых и восхитительных
+возможностей применения стилей к элементам, медиа-выражения (несмотря на свою
+ограниченность) всегда будут работать в браузере быстрее, чем стили,
+полагающиеся на JavaScript. Однако, медиа-выражения CSS — это нечто большее,
+чем просто внешний вид HTML на экране. Медиа-выражения также включают выражения
+для печатных версий и других способов отображения информации сайтом. EQCSS может
+быть использован совместно с медиа-выражениями для вещей вроде стилей для
+печати, так что не стоит выбрасывать медиа-выражения на свалку только из-за
+того, что теперь появились ещё и выражения для элементов!
 
 ### Designing With 20/20 Vision {#designing-with-20-20-vision}
 
