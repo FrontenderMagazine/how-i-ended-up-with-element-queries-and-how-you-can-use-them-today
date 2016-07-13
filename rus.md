@@ -167,13 +167,13 @@ jQuery вычеркнули из списка. Мне нужна была биб
 
 Результатом этого исследования стало создание синтаксиса, включающего в себя
 ряд новых продвинутых условий для адаптивности, стилей с изолированной областью
-видимости и новых селекторов для выборки элементов, а также библиотеку на чистом
-JavaScript под названием [EQCSS.js][11]. Плюс, поддержка Internet Explorer (IE)
-8 осуществляется при помощи необязательного внешнего полифилла. И плагин и
-полифилл выпущены под [лицензией MIT][13], их использование и бесплатно для
-всех.
+применения и новых селекторов для выборки элементов, а также библиотеку на
+чистом JavaScript под названием [EQCSS.js][11]. Плюс, поддержка Internet
+Explorer (IE) 8 осуществляется при помощи необязательного внешнего полифилла.
+И плагин и полифилл выпущены под [лицензией MIT][13], их использование бесплатно
+для всех.
 
-## Области применения выражений для элементов
+## Где полезны выражения для элементов
 
 ### Разработка плагинов
 
@@ -198,7 +198,7 @@ JavaScript под названием [EQCSS.js][11]. Плюс, поддержк�
 оптимизация**. Разрабатывая с использованием выражений для элементов, вы
 оставляете условия адаптивности независимыми от макета, что даёт вам больше
 гибкости и возможность перемещать элементы без необходимости сильно переписывать
-стили. 
+стили.
 
 Мне кажется наиболее полезным использование выражений для элементов при
 разработке дизайна или набросков таких вещей как:
@@ -259,140 +259,138 @@ JavaScript под названием [EQCSS.js][11]. Плюс, поддержк�
 
 Этот файл (`EQCSS.js`) включает в себя поддержку всех современных браузеров,
 включая IE9 и выше. Для поддержки IE8 нам пришлось бы использовать кучу других
-полифиллов. Имейте ввиду, что в IE 8 даже медиа-выражения без полифиллов не
+полифиллов. Задумайтесь, в IE 8 даже медиа-выражения без полифиллов не
 поддерживаются, поэтому достаточно удивительно, что нам удалось заставить там
 работать выражения для элементов. Чтобы добавить EQCSS поддержку IE8, добавьте
 следующую строчку перед местом подключения основного плагина:
 
     <!‐‐[if lt IE 9]><script src="EQCSS‐polyfills.js"></script><![endif]‐‐>
 
-#### Running EQCSS {#running-eqcss}
+### Запуск EQCSS
 
-By default, the EQCSS plugin will compute any styles it finds once the page
-loads, and also whenever it detects the browser being resized, similar to media 
-queries. You can also call`EQCSS.apply()` manually with JavaScript to
-recalculate styles at any time, which can be useful once content has been 
-updated on the page.
+По умолчанию плагин EQCSS рассчитывает все стили, которые он найдёт в документе,
+в момент загрузки страницы и когда обнаружит изменение размеров окна,
+поведение похожее на медиа-запросы. Также можно вручную вызвать `EQCSS.apply()`
+из JavaScript, чтобы пересчитать стили в любой момент, это может быть полезно,
+если содержимое страницы меняется.
 
-#### Writing Element Query CSS {#writing-element-query-css}
+### Написание Element Query CSS
 
-The EQCSS.js plugin can read styles in a couple of different ways. You can
-include EQCSS in any`style` tags on an HTML page. You are also able to write
-EQCSS in an external CSS style sheet.
+Плагин EQCSS.js может читать стили несколькими различными способами. Вы можете
+вставить EQCSS в любой тег `style` на странице. Также можно писать EQCSS во
+внешних файлах стилей.
 
-If you would like to keep your EQCSS-powered code separate from your CSS, you
-can load EQCSS syntax using the`script` tag with the type set to `text/eqcss`.
-You can add styles inline in a tag like this, or link to an external`.eqcss`
-style sheet with
-`<script type="text/eqcss" src=styles.eqcss></script>`, which would
-load a file named`styles.eqcss`.
+Если вам хочется хранить код для EQCSS отдельно от CSS, вы можете загрузить
+стили EQCSS используя тег `script` с атрибутом `type` равным `text/eqcss`.
+При использовании такого способа стили можно записать внутри тега, или указать
+ссылку на внешний файл `.eqcss`:
+`<script type="text/eqcss" src=styles.eqcss></script>` подгрузит файл с именем
+`styles.eqcss`.
 
-### Anatomy Of An Element Query {#the-anatomy-of-an-element-query}
+## Анатомия выражений для элементов
 
-#### Style Scoping {#style-scoping}
+### Области применения стилей
 
-The syntax in EQCSS for writing element queries is very similar to the
-formatting of CSS media queries, but instead of`@media`, we begin the query
-with`@element`. The only other piece of information we need to supply is at
-least one selector that these styles should apply to. Here’s how you would 
-create a new scope for an element named`<div class="widget">`:
+Синтаксис EQCSS для написания выражений для элементов очень похож внешне на
+медиа-запросы, но вместо `@media` мы начинаем выражение с `@element`.
+Единственная дополнительная информация, которую нужно указать — это минимум один
+селектор, к которому эти стили будут применяться. Например, вот так задаётся
+область применения для элемента `<div class="widget">`:
 
     @element '.widget' {
     
     }
 
-The element between the quotes (in this case, `.widget`) may be any valid CSS
-selector. With this query, we have created a new scope on the`.widget` element
-. We haven’t included any responsive conditions for the scope yet, so any styles
-in a query like this would apply to the scoped element at all times.
+Часть кода между кавычками (в нашем случае `.widget`) может быть любым валидным
+селектором CSS. Этим выражением мы создали новую область применения для элемента
+`.widget`. Но мы пока что не указали ни одного условия адаптивности для этой
+области, так что стили внутри неё будут применяться к элементу всегда.
 
-Without the ability to scope styles to one or more elements (instead of the
-whole page at once), we wouldn’t be able to apply responsive queries to just 
-those elements. Once we have created that element-level scope, using the more 
-advanced features of the EQCSS syntax becomes easy — like the`$parent` meta
-selector, for example — because JavaScript now has a reference point from which 
-to calculate things like the`parentNode` of the scoped element. This is huge!
+Без возможности изолировать стили, привязывая их к одному или нескольким
+элементам (вместо страницы целиком), у нас не получилось бы применять
+условия адаптивности только к этим элементам. Но как только мы создаём область
+видимости, становится легко использовать продвинутые возможности EQCSS,
+например, мета-селектор `$parent`, потому что у JavaScript теперь есть опорная
+точка, от которой можно рассчитывать вещи вроде `parentNode` элемента. Это
+важно!
 
-True, CSS already includes a direct-descendant selector, with the `>`, which
-allows us to select elements that are direct children of the specified element. 
-But CSS currently offers no way to travel in the other direction up the family 
-tree, to select an element that contains another element, which one would call 
-its parent element. The “CSS Selectors Level 4” specification now includes a
-[`:has()` selector][17][9][18], which works in similar way to jQuery’s 
-[`:has()` selector][19][10][20], but currently [browser support is nil][21]
-[11][22]. Scoped CSS makes a different kind of parent selector possible.
+Да, в CSS уже есть селектор прямого потока, с комбинатором `>`, который
+позволяет выбирать дочерние элементы указанного элемента. Но CSS пока не
+предоставляет никаких возможностей путешествовать вверх по семейному древу и
+выбирать родителей, то есть, элементы, содержащие данный элемент. В спецификации
+CSS 4 появился [селектор `:has()`][17], принципиально похожий на
+[селектор `:has()`][19] в jQuery, но на сегодняшний день
+[поддержка браузерами нулевая][21]. С областями применения мы можем обращаться
+к родительским элементам по-другому.
 
-Now that we have opened a scope in the context of the `.widget` element, we can
-write styles from its perspective to target its own parent element:
+Теперь, когда мы объявили область применения в контексте элемента `.widget`,
+мы можем использовать его как точку отсчёта и обращаться к родителю:
 
     @element '.widget' {
       $parent {
-        /* These styles apply to the parent of .widget */
+        /* Эти стили применятся к родителю .widget */
       }
     }
 
-Another example of special selectors that can be used in any element query are
-the`$prev` and `$next` selectors, which represent the previous and next sibling
-elements. Even though CSS can reach the next sibling of our widget with a 
-selector like`.widget + *`, there’s no way in CSS to reach backward and
-select the element that comes directly before another element.
+Другой пример специальных селекторов, использующихся в выражениях для
+элементов,— селекторы `$prev` и `$next`, они представляют предыдущий и следующий
+соседние элементы соответственно. Опять-таки, в CSS можно добраться до
+следующего соседа нашего виджета при помощи селектора вроде `.widget + *`, но
+нет возможности пойти назад и получить элемент, который идёт непосредственно
+перед другим элементом.
 
     <section>
-      <div>This will be the previous item</div>
-      <div class="widget">This is the scoped element</div>
-      <div>This will be the next item</div>
+      <div>Это предыдущий элемент</div>
+      <div class="widget">Это элемент области определения</div>
+      <div>Это следующий элемент</div>
     </section>
     <style>
       @element '.widget' {
         $prev {
-          /* These styles apply to the element before .widget */
+          /* Эти стили применятся к элементу перед .widget */
         }
         $next {
-          /* These styles apply to the element after .widget */
+          /* Эти стили применятся к элементу после .widget */
         }
       }
     </style>
 
-#### Element Queries {#element-queries}
+### Выражения для элементов
 
-Developers most frequently use CSS media queries for responsive design by
-applying styles based on the height or width of the browser’s viewport. EQCSS 
-syntax supports many new types of responsive conditions. Instead of working with
-the width and height of the browser alone, you can write styles that apply to 
-elements based on their own properties, like how many child elements it contains,
-or how many characters or lines of text are in the element at the moment.
+Чаще всего разработчики использую медиа-выражения для адаптивного дизайна,
+применяя стили на основе высоты или ширины порта просмотра браузера. Синтаксис
+EQCSS поддерживает новые типы адаптивных условий. Вмсето того, чтобы работать
+только с шириной и высотой браузера, вы можете написать стили, которые
+применяются к элементу на основе его собственных свойств. Таких, например, как
+количество дочерних элементов или количество символов или строк текста на
+текущий момент.
 
-Adding these responsive conditions to your scoped styles is similar to how you
-would format media queries: You’d add`and (condition: value)` for each
-condition you want to check. In this example, we will check whether any
-`.widget` elements are displaying at least 500 pixels wide on the page.
+Добавление этих условий в область определения стиля похоже на то, как вы пишете
+медиа-выражения: нужно добавить `and (условие: значение)` для каждого нужного
+условия. В этом примере мы проверяем, есть ли на странице элементы `.widget`
+шириной минимум 500 пикселей.
 
     @element '.widget' and (min‐width: 500px) {
-      /* CSS rules here */
+      /* Тут правила CSS */
     }
 
-The syntax of an element query breaks down as follows:
+Подробно синтаксис выражений для элементов таков:
 
-*   **element query**  
-    `@element selector_list [ condition_list ] { css_code }` 
-*   **selector list**  
-    `" css selector [ "," css selector ]* "` 
-*   **condition list**  
-    
-    `and ( query_condition : value ) [ "and (" query condition ":" value ")" ]*`
-   
-*   **value**  
-    `number [ css unit ]` 
-*   **query condition**  
-    
+*   **выражений для элемента**
+    `@element список_селекторов [ список_условий ] { код_css }` 
+*   **список селекторов**
+    `" селектор css [ "," селектор css ]* "`
+*   **список условий**
+    `and ( условие_выражения : значение ) [ "and (" условие_выражения ":" значение ")" ]*`
+*   **значение**
+    `число [ единица измерения css ]`
+*   **условие выражения**
     `min-height | max-height | min-width | max-width | min-characters | max-characters | min-lines | max-lines | min-children | max-children | min-scroll-y | max-scroll-y | min-scroll-x | max-scroll-x`
-   
-*   **css unit**  
+*   **единица измерения css**
     `% | px | pt | em | cm | mm | rem | ex | ch | pc | vw | vh | vmin | vmax`
-   
 
-As another example, here’s how to write a query that turns the `body` element
-red when the`.widget` element reaches 500 pixels wide:
+Вот другой пример, как написать выражение, при котором элемент `body` становится
+красным, если ширина элемента `.widget` достигает 500 пикселей:
 
     @element '.widget' and (min‐width: 500px) {
       body {
@@ -400,18 +398,18 @@ red when the`.widget` element reaches 500 pixels wide:
       }
     }
 
-Note that the `body` element changes when the `.widget` reaches a certain width
-, not the`.widget` element itself!
+Заметьте, что элемент `body` изменяется, когда `.widget` достигает определённой
+ширины, но сам элемент `.widget` не меняется!
 
-### Element Query Conditions {#element-query-conditions}
+## Условия выражений для элементов
 
-Below is the full list of responsive conditions that EQCSS supports.
+Ниже приведён полный список условий адаптивности, поддерживаемый EQCSS.
 
-#### Width-Based Conditions {#width-queries}
+### Условия на основе ширины
 
-#### Height-Based Conditions {#height-queries}
+### Условия на основе высоты
 
-#### Count-Based Conditions {#count-queries}
+### Условия на основе количества
 
 You can combine any number of these conditions in your element queries for
 truly multi-dimensional responsive styles. This gives you much more flexibility 
