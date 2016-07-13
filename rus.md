@@ -376,17 +376,28 @@ EQCSS поддерживает новые типы адаптивных усло
 
 Подробно синтаксис выражений для элементов таков:
 
-*   **выражений для элемента**
-    `@element список_селекторов [ список_условий ] { код_css }` 
+*   **выражение для элемента**
+
+    `@element список_селекторов [ список_условий ] { код_css }`
+
 *   **список селекторов**
+
     `" селектор css [ "," селектор css ]* "`
+
 *   **список условий**
+
     `and ( условие_выражения : значение ) [ "and (" условие_выражения ":" значение ")" ]*`
+
 *   **значение**
+
     `число [ единица измерения css ]`
+
 *   **условие выражения**
+
     `min-height | max-height | min-width | max-width | min-characters | max-characters | min-lines | max-lines | min-children | max-children | min-scroll-y | max-scroll-y | min-scroll-x | max-scroll-x`
+
 *   **единица измерения css**
+
     `% | px | pt | em | cm | mm | rem | ex | ch | pc | vw | vh | vmin | vmax`
 
 Вот другой пример, как написать выражение, при котором элемент `body` становится
@@ -408,41 +419,65 @@ EQCSS поддерживает новые типы адаптивных усло
 ### Условия на основе ширины
 
 *   `min-width`
+
     [демо для пикселей](http://codepen.io/tomhodgins/pen/MeKwaY "Min width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/ezJNpp "Min width in percent")
+
 *   `max-width`
+
     [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjVg "Max width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/oLbXzG "Max width in percent")
 
 ### Условия на основе высоты
 
 *   `min-height`
+
     [демо для пикселей](http://codepen.io/tomhodgins/pen/PzZqPd "Min height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/KMVpdO "Min height in percent")
+
 *   `max-height`
+
     [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjPg "Max height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/xOZGZg "Max height in percent")
 
 ### Условия на основе количества
 
 *   `min-characters`
+
     [демо для блочных элементов](http://codepen.io/tomhodgins/pen/vKLOLd "Min characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/OXMVMB "Min characters on form inputs")
+
 *   `max-characters`
+
     [демо для блочных элементов](http://codepen.io/tomhodgins/pen/pbgJyz "Max characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/MeKwyY "Max characters on form inputs")
+
 *   `min-lines`
+
     [демо](http://codepen.io/tomhodgins/pen/JKGdXN "Min lines demo")
+
 *   `max-lines`
+
     [демо](http://codepen.io/tomhodgins/pen/oLbXxG "Max lines demo")
+
 *   `min-children`
+
     [демо](http://codepen.io/tomhodgins/pen/dXGoMZ "Min children demo")
+
 *   `max-children`
+
     [демо](http://codepen.io/tomhodgins/pen/mEVJPK "Max children demo")
+
 
 ### Условия на основе прокрутки
 
 *   `min-scroll-y`
+
     [демо](http://codepen.io/tomhodgins/pen/OXMVNa "Min scroll Y demo")
 *   `max-scroll-y`
+
     [демо](http://codepen.io/tomhodgins/pen/beEdpZ "Max scroll Y demo")
+
 *   `min-scroll-x`
+
     [демо](http://codepen.io/tomhodgins/pen/ZOQGOb "Min scroll X demo")
+
 *   `max-scroll-x`
+
     [демо](http://codepen.io/tomhodgins/pen/ezJNzJ "Max scroll X demo")
 
 Вы можете сочетать любое количество этих условий в выражении для элемента и
