@@ -407,16 +407,50 @@ EQCSS поддерживает новые типы адаптивных усло
 
 ### Условия на основе ширины
 
+*   `min-width`
+    [демо для пикселей](http://codepen.io/tomhodgins/pen/MeKwaY "Min width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/ezJNpp "Min width in percent")
+*   `max-width`
+    [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjVg "Max width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/oLbXzG "Max width in percent")
+
 ### Условия на основе высоты
+
+*   `min-height`
+    [демо для пикселей](http://codepen.io/tomhodgins/pen/PzZqPd "Min height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/KMVpdO "Min height in percent")
+*   `max-height`
+    [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjPg "Max height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/xOZGZg "Max height in percent")
 
 ### Условия на основе количества
 
-You can combine any number of these conditions in your element queries for
-truly multi-dimensional responsive styles. This gives you much more flexibility 
-and control over how elements render. For example, to shrink the font size of a 
-header that has more than 15 characters when less than 600 pixels of space is 
-available to display, you could combine the conditions for`max‐characters: 15`
-and`max‐width: 600px`:
+*   `min-characters`
+    [демо для блочных элементов](http://codepen.io/tomhodgins/pen/vKLOLd "Min characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/OXMVMB "Min characters on form inputs")
+*   `max-characters`
+    [демо для блочных элементов](http://codepen.io/tomhodgins/pen/pbgJyz "Max characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/MeKwyY "Max characters on form inputs")
+*   `min-lines`
+    [демо](http://codepen.io/tomhodgins/pen/JKGdXN "Min lines demo")
+*   `max-lines`
+    [демо](http://codepen.io/tomhodgins/pen/oLbXxG "Max lines demo")
+*   `min-children`
+    [демо](http://codepen.io/tomhodgins/pen/dXGoMZ "Min children demo")
+*   `max-children`
+    [демо](http://codepen.io/tomhodgins/pen/mEVJPK "Max children demo")
+
+### Условия на основе прокрутки
+
+*   `min-scroll-y`
+    [демо](http://codepen.io/tomhodgins/pen/OXMVNa "Min scroll Y demo")
+*   `max-scroll-y`
+    [демо](http://codepen.io/tomhodgins/pen/beEdpZ "Max scroll Y demo")
+*   `min-scroll-x`
+    [демо](http://codepen.io/tomhodgins/pen/ZOQGOb "Min scroll X demo")
+*   `max-scroll-x`
+    [демо](http://codepen.io/tomhodgins/pen/ezJNzJ "Max scroll X demo")
+
+Вы можете сочетать любое количество этих условий в выражении для элемента и
+получить по-настоящему многомерные адаптивные стили. Это предоставляет больше
+гибкости и контроля над тем, как элементы выглядят. К примеру, чтобы уменьшить
+размер шрифта заголовка, в котором содержится более 15 символов, и если меньше
+600 пикселей по ширине доступно для отображения, вы можете применить совместно
+условия `max-characters: 15` и `max-width: 600px`:
 
     h1 {
       font‐size: 24pt;
@@ -427,13 +461,16 @@ and`max‐width: 600px`:
       }
     }
 
-One of the problems you might run into once you start writing scoped styles
-with responsive conditions is that, when multiple instances of the same selector
-are on a page, using that selector in your element query will apply styles to*
-all* instances of that selector on the page when *any* of them match the
-conditions. Taking our`.widget` examples from earlier, suppose we had two
-widgets on the page (maybe one in the sidebar and another displaying at full 
-width) and we wrote our element query like this:
+### Мета-селекторы
+
+Одна из проблем, с которыми вы можете столкнуться при использовании стилей с
+областями определения и адаптивнмы условиями: если на странице есть несколько
+элементов с одинаковым селектором, то использование этого селектора в выражении
+для элемента приведёт к тому, что стили будут применены *ко всем* элементам
+на странице, подпадающих под этот селектор, если *хотя бы один* из них
+соотвествует условию. Вернёмся к нашему примеру с `.widget` и предположим, что
+на странице есть два виджета (например, один в боковой панели, а другой
+отображается на всю ширину), а мы написали выражение для элемента таким образом:
 
     @element '.widget' and (min‐width: 500px) {
       .widget h2 {
@@ -441,17 +478,16 @@ width) and we wrote our element query like this:
       }
     }
 
-This would mean that when *either* `.widget` element on the page is at least
-500 pixels wide, the style would apply to both`.widget` elements. This is
-probably not what we want to happen in most cases. This is where meta selectors 
-come in!
+Это будет значить, что когда *любой из* элементов `.widget` на странице шириной
+минимум 500 пикселей, то стиль применится к обоим элементам `.widget`. В большей
+части случаев, пожалуй. это не то, что нам нужно. Но в этой ситуации нам помогут
+мета-селекторы!
 
-The two parts that make up our element query are the selector and the
-responsive condition. So, if we want to target only the elements on the page 
-that match both the selector*and* the responsive conditions at the same time,
-we can use the meta selector`$this`. We can rewrite our last example so that
-the style applies only to`.widget` elements that match the `min‐with: 500px`
-condition:
+Выражение для элемента состоит из двух частей: селектора и условия. И если мы
+хотим применять стили только к тем элементам на страницы, которые соответствуют
+*и* селектору *и* условию одновременно, то можно использовать мета-селектор
+`$this`. Давайте перепишем наш последний пример так, чтобы стили применялись
+только к элементам `.widget`, соответствующим условию `min‐width: 500px`:
 
     @element '.widget' and (min‐width: 500px) {
       $this h2 {
@@ -926,3 +962,4 @@ Happy hacking!
  [53]: https://twitter.com/intent/tweet?original_referer=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&source=tweetbutton&text=The%20Search%20For%20The%20Holy%20Grail%3A%20How%20I%20Ended%20Up%20With%20Element%20Queries%2C%20And%20How%20You%20Can%20Use%20Them%20Today&url=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&via=smashingmag
 
  [54]: http://www.facebook.com/sharer/sharer.php?u=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
+
