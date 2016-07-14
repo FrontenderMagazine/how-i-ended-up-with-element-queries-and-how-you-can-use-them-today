@@ -47,7 +47,7 @@ CSS перед тем, как страница загрузится.
 ### Есть ли надежды на будущее веб-разработки?
 
 В 2013 Тайсон Матанич (Tyson Matanich) написал статью, озаглавленную
-[«Медиа-выражения не решение: Полифилл выражений для элементов»][1], в которой
+[«Медиа-выражения не решение: Полифилл выражений для элементов»][media-queries-are-not-the-answer], в которой
 представил широкой публике концепцию выражений для элементов (element queries).
 С неё началось обсуждение того, как можно было бы обойти недостатки CSS при
 помощи плагинов и полифиллов.
@@ -71,10 +71,11 @@ Rails. Приложение должно было отображать поль�
 отображать в виде таблиц — да, самых настоящих элементов `table` (финансовые
 транзакции, спортивные рекорды и т.п.).
 
-![][3]
+![][eqcss-logo]
+
 _Проект EQCSS появился как результат исследования выражений для элементов.
-Теперь, когда он [наконец выпущен][5], вы тоже можете им воспользоваться.
-[Посмотреть демо.][4]_
+Теперь, когда он [наконец выпущен][eqcss-gh], вы тоже можете им воспользоваться.
+[Посмотреть демо.][eqcss-demos]_
 
 Я написал адаптивные стили с использованием медиавыражений, которые отображали
 элемент `table` правильно для браузеров различных размеров. Но как только одна
@@ -154,7 +155,7 @@ jQuery вычеркнули из списка. Мне нужна была биб
 
 На текущий момент сообщество CSS сосредоточено на обсуждении нестандартных
 директив, и обсуждение выражений для элементов
-[до сих пор несёт предварительный характер][9]. Скорее всего, нас отделяют годы от
+[до сих пор несёт предварительный характер][wicg]. Скорее всего, нас отделяют годы от
 какой-либо официальной спецификации CSS по возможностям вроде этой. Да и будь
 у нас спецификация, перед тем, как использовать эти возможности при разработке
 сайтов, нам всё равно бы пришлось ждать, пока достаточное количество браузеров
@@ -168,9 +169,9 @@ jQuery вычеркнули из списка. Мне нужна была биб
 Результатом этого исследования стало создание синтаксиса, включающего в себя
 ряд новых продвинутых условий для адаптивности, стилей с изолированной областью
 применения и новых селекторов для выборки элементов, а также библиотеку на
-чистом JavaScript под названием [EQCSS.js][11]. Плюс, поддержка Internet
+чистом JavaScript под названием [EQCSS.js][eqcss-gh]. Плюс, поддержка Internet
 Explorer (IE) 8 осуществляется при помощи необязательного внешнего полифилла.
-И плагин и полифилл выпущены под [лицензией MIT][13], их использование бесплатно
+И плагин и полифилл выпущены под [лицензией MIT][mit-license], их использование бесплатно
 для всех.
 
 ## Где полезны выражения для элементов
@@ -238,7 +239,7 @@ Explorer (IE) 8 осуществляется при помощи необяза�
 ## Как писать выражения для элементов
 
 Начать работать с EQCSS легко. Всё, что вам нужно для того, чтобы использовать
-синтаксис EQCSS,— это [подключить скрипт][15] где-либо в HTML.
+синтаксис EQCSS,— это [подключить скрипт][eqcss] где-либо в HTML.
 
 ### Загрузка EQCSS.js
 
@@ -318,9 +319,9 @@ Explorer (IE) 8 осуществляется при помощи необяза�
 позволяет выбирать дочерние элементы указанного элемента. Но CSS пока не
 предоставляет никаких возможностей путешествовать вверх по семейному древу и
 выбирать родителей, то есть, элементы, содержащие данный элемент. В спецификации
-CSS 4 появился [селектор `:has()`][17], принципиально похожий на
-[селектор `:has()`][19] в jQuery, но на сегодняшний день
-[поддержка браузерами нулевая][21]. С областями применения мы можем обращаться
+CSS 4 появился [селектор `:has()`][css-has], принципиально похожий на
+[селектор `:has()`][jquery-has] в jQuery, но на сегодняшний день
+[поддержка браузерами нулевая][caniuse-has]. С областями применения мы можем обращаться
 к родительским элементам по-другому.
 
 Теперь, когда мы объявили область применения в контексте элемента `.widget`,
@@ -420,65 +421,65 @@ EQCSS поддерживает новые типы адаптивных усло
 
 *   `min-width`
 
-    [демо для пикселей](http://codepen.io/tomhodgins/pen/MeKwaY "Min width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/ezJNpp "Min width in percent")
+    [демо для пикселей][MeKwaY], [демо для процентов][ezJNpp]
 
 *   `max-width`
 
-    [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjVg "Max width in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/oLbXzG "Max width in percent")
+    [демо для пикселей][EyPjVg], [демо для процентов][oLbXzG]
 
 ### Условия на основе высоты
 
 *   `min-height`
 
-    [демо для пикселей](http://codepen.io/tomhodgins/pen/PzZqPd "Min height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/KMVpdO "Min height in percent")
+    [демо для пикселей][PzZqPd], [демо для процентов][KMVpdO]
 
 *   `max-height`
 
-    [демо для пикселей](http://codepen.io/tomhodgins/pen/EyPjPg "Max height in pixels"), [демо для процентов](http://codepen.io/tomhodgins/pen/xOZGZg "Max height in percent")
+    [демо для пикселей][EyPjPg], [демо для процентов][xOZGZg]
 
 ### Условия на основе количества
 
 *   `min-characters`
 
-    [демо для блочных элементов](http://codepen.io/tomhodgins/pen/vKLOLd "Min characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/OXMVMB "Min characters on form inputs")
+    [демо для блочных элементов][vKLOLd], [демо для элементов формы][OXMVMB]
 
 *   `max-characters`
 
-    [демо для блочных элементов](http://codepen.io/tomhodgins/pen/pbgJyz "Max characters on block elements"), [демо для элементов формы](http://codepen.io/tomhodgins/pen/MeKwyY "Max characters on form inputs")
+    [демо для блочных элементов][pbgJyz], [демо для элементов формы][MeKwyY]
 
 *   `min-lines`
 
-    [демо](http://codepen.io/tomhodgins/pen/JKGdXN "Min lines demo")
+    [демо][JKGdXN]
 
 *   `max-lines`
 
-    [демо](http://codepen.io/tomhodgins/pen/oLbXxG "Max lines demo")
+    [демо][oLbXxG]
 
 *   `min-children`
 
-    [демо](http://codepen.io/tomhodgins/pen/dXGoMZ "Min children demo")
+    [демо][dXGoMZ]
 
 *   `max-children`
 
-    [демо](http://codepen.io/tomhodgins/pen/mEVJPK "Max children demo")
+    [демо][mEVJPK]
 
 
 ### Условия на основе прокрутки
 
 *   `min-scroll-y`
 
-    [демо](http://codepen.io/tomhodgins/pen/OXMVNa "Min scroll Y demo")
+    [демо][OXMVNa]
 *   `max-scroll-y`
 
-    [демо](http://codepen.io/tomhodgins/pen/beEdpZ "Max scroll Y demo")
+    [демо][beEdpZ]
 
 *   `min-scroll-x`
 
-    [демо](http://codepen.io/tomhodgins/pen/ZOQGOb "Min scroll X demo")
+    [демо][ZOQGOb]
 
 *   `max-scroll-x`
 
-    [демо](http://codepen.io/tomhodgins/pen/ezJNzJ "Max scroll X demo")
+    [демо][ezJNzJ]
 
 Вы можете сочетать любое количество этих условий в выражении для элемента и
 получить по-настоящему многомерные адаптивные стили. Это предоставляет больше
@@ -536,23 +537,23 @@ the full list:
 
 *   `$this`
 
-    [демо][23]
+    [демо][xOZGOq]
 
 *   `$parent`
 
-    [демо][25]
+    [демо][VjeLjy]
 
 *   `$root`
 
-    [демо][27]
+    [демо][RRrPRy]
 
 *   `$prev`
 
-    [демо][29]
+    [демо][gMPpMd]
 
 *   `$next`
 
-    [демо][31]
+    [демо][PzZqzy]
 
 Эти селекторы работают только внутри выражений для элементов.
 
@@ -560,7 +561,7 @@ the full list:
 
 *   `eval('')`
 
-    [демо](http://codepen.io/tomhodgins/pen/WxrvxB "Eval demo")
+    [демо][WxrvxB]
 
 Последняя возможность EQCSS самая крутая из всех — `eval('')`. Благодаря ней
 вся мощь JavaScript становится доступной из CSS. Хотя JavaScript и может
@@ -653,7 +654,7 @@ JavaScript (вроде `eval('new Date().getFullYear()')`); или считат�
 Краткость и читаемость CSS и вся мощь JavaScript. Никаких лишних обёрток,
 никаких лишних классов, никакого лишнего CSS.
 
-Но будьте осторожны с `eval('')`. [Неспроста][33] CSS-выражения (CSS
+Но будьте осторожны с `eval('')`. [Неспроста][ending-expressions] CSS-выражения (CSS
 expressions) раньше считались опасными, и также неспроста мы тщательно
 исследовали эту идею. Если вы не будете следить за тем, к какому количеству
 элементов на странице они применяются, и за тем, как часто вы пересчитываете
@@ -666,7 +667,7 @@ expressions) раньше считались опасными, и также н�
 
 Другие неприятности могут произойти, если вы создаёте выражения с конфликтующими
 условиями или стилями. EQCSS, как и CSS, читается сверху вниз с учётом
-[иерархии специфичности][35]. Хотя CSS и декларативный язык, в нём есть и
+[иерархии специфичности][css-specificity]. Хотя CSS и декларативный язык, в нём есть и
 продвинутые возможности. В качестве языка программирования он всего лишь в паре
 шагов от полноты по Тьюрингу. До сих пор отладка CSS была достаточно
 бесхитростным занятием, но EQCSS превращает CSS из простого интерпретируемого
@@ -792,7 +793,7 @@ CSS, и браузер начнёт их поддерживать, то вы с�
 как скрипт и избежать конфликтов.
 
 Заглядывая в будущее, есть одно решение, с которым разработчики браузеров сейчас
-экспериментируют, [Houdini][37], оно дало бы разработчикам плагинов возможность
+экспериментируют, [Houdini][houdini], оно дало бы разработчикам плагинов возможность
 расширять CSS по-новому, сродни добавлению поддержки в сам браузер. Возможно,
 когда-нибудь мы сможем писать более эффективные плагины, интерпретирующие EQCSS,
 и привносящие эти возможности в браузер более прямым и быстрым способом, чем
@@ -842,7 +843,7 @@ CSS, и браузер начнёт их поддерживать, то вы с�
 
 ## Думаем сначала об элементе
 
-Подход «сначала элемент» схож по духу с [принципом атомарного дизайна][39], но
+Подход «сначала элемент» схож по духу с [принципом атомарного дизайна][atomic-web-design], но
 на практике отличается внешне от того, как большая часть людей реализовала
 атомарные дизайны в прошлом.
 
@@ -941,101 +942,116 @@ CSS, и браузер начнёт их поддерживать, то вы с�
 
 ### Демо
 
-*   [Адаптивное соотношение сторон](http://elementqueries.com/demos/aspect-ratio.html)
-*   [Заголовок, прилипающий при прокрутке](http://elementqueries.com/demos/scroll-header.html)
-*   [Стиль цитат](http://elementqueries.com/demos/blockquote-style.html)
-*   [Календарь](http://elementqueries.com/demos/calendar.html)
-*   [Блоки содержимого](http://elementqueries.com/demos/content-blocks.html)
-*   [Подсчёт дочерних элементов](http://elementqueries.com/demos/counting-children.html)
-*   [Дата](http://elementqueries.com/demos/date.html)
-*   [Демо в стиле Цастрова](http://elementqueries.com/demos/element-query-demo.html)
-*   [Выплывающий блок](http://elementqueries.com/demos/flyout.html)
-*   [Адаптивные заголовки](http://elementqueries.com/demos/headline.html)
-*   [Медиаплеер](http://elementqueries.com/demos/media-player.html)
-*   [Сообщения](http://elementqueries.com/demos/message-style.html)
-*   [Диалоговое окно](http://elementqueries.com/demos/modal.html)
-*   [Навигация](http://elementqueries.com/demos/nav.html)
-*   [Применение стилей к родителю](http://elementqueries.com/demos/parent.html)
-*   [Страница расценок](http://elementqueries.com/demos/pricing-chart.html)
-*   [Адаптивная таблица](http://elementqueries.com/demos/responsive-table.html)
-*   [Блокер при прокрутке](http://elementqueries.com/demos/blocker.html)
-*   [Форма регистрации](http://elementqueries.com/demos/signup-form.html)
-*   [Блок отзывов](http://elementqueries.com/demos/testimonial.html)
-*   [Счётчик символов твита](http://elementqueries.com/demos/tweet-counter.html)
-*   [Переменные JS](http://elementqueries.com/demos/variables.html)
-*   [Адаптивное масштабирование](http://elementqueries.com/demos/video-scaling.html)
-*   [Геометрический дизайн](http://elementqueries.com/demos/geometric.html)
-*   [Адаптивная форма заказа](http://elementqueries.com/demos/order-form.html)
-*   [Сетка на выражениях для элементов](http://elementqueries.com/demos/element-query-grid.html)
-*   [Функции JS в CSS](http://elementqueries.com/demos/js-functions-demo.html)
-*   [Адаптивное содержимое](http://elementqueries.com/demos/responsive-waterfall.html)
+*   [Адаптивное соотношение сторон][aspect-ratio]
+*   [Заголовок, прилипающий при прокрутке][scroll-header]
+*   [Стиль цитат][blockquote-style]
+*   [Календарь][calendar]
+*   [Блоки содержимого][content-blocks]
+*   [Подсчёт дочерних элементов][counting-children]
+*   [Дата][date]
+*   [Демо в стиле Цастрова][element-query-demo]
+*   [Выплывающий блок][flyout]
+*   [Адаптивные заголовки][headline]
+*   [Медиаплеер][media-player]
+*   [Сообщения][message-style]
+*   [Диалоговое окно][modal]
+*   [Навигация][nav]
+*   [Применение стилей к родителю][parent]
+*   [Страница расценок][pricing-chart]
+*   [Адаптивная таблица][responsive-table]
+*   [Блокер при прокрутке][blocker]
+*   [Форма регистрации][signup-form]
+*   [Блок отзывов][testimonial]
+*   [Счётчик символов твита][tweet-counter]
+*   [Переменные JS][variables]
+*   [Адаптивное масштабирование][video-scaling]
+*   [Геометрический дизайн][geometric]
+*   [Адаптивная форма заказа][order-form]
+*   [Сетка на выражениях для элементов][element-query-grid]
+*   [Функции JS в CSS][js-functions-demo]
+*   [Адаптивное содержимое][responsive-waterfall]
 
 
 ## Материалы для дальнейшего изучения
 
-Вы сможете найти [проект EQCSS на GitHub][41], [demos][7], документацию и статьи
-на [сайте EQCSS][44]. Всё большее количество [демо на CodePen][46] использует
-EQCSS, и вы можете создать свой собственное, форкнув этот [шаблон][48], в
-котором уже подключён EQCSS. Вы можете [поиграться с утилитой EQCSS][50],
+Вы сможете найти [проект EQCSS на GitHub][eqcss-gh], [демо][eqcss-demos], документацию и статьи
+на [сайте EQCSS][elementqueries]. Всё большее количество [демо на CodePen][eqcss-codepen] использует
+EQCSS, и вы можете создать своё собственное, форкнув этот [шаблон][codepen-template], в
+котором уже подключён EQCSS. Вы можете [поиграться с утилитой EQCSS][repl],
 которая была создана для проверки того, что ваш код EQCSS работает так, как
 ожидается.
 
 Приятной разработки!
 
-
- [1]: https://www.smashingmagazine.com/2013/06/media-queries-are-not-the-answer-element-query-polyfill "Media Queries Are Not The Answer: Element Query Polyfill"
-
- [3]: img/eqcss-logo-opt.png "Логотип EQCSS"
-
- [5]: https://github.com/eqcss/eqcss
-
- [7]: https://github.com/eqcss/eqcss#element-query-demos
-
- [9]: https://discourse.wicg.io/t/element-queries/26 "WICG Discourse Forum Element Queries Thread"
-
- [11]: https://github.com/eqcss/eqcss "EQCSS.JS"
-
- [13]: https://tldrlegal.com/license/mit-license "MIT License at TLDR Legal"
-
- [15]: http://elementqueries.com/EQCSS.js "EQCSS.js"
-
- [17]: https://drafts.csswg.org/selectors-4/#relational "Description of Has in CSS Selectors Level 4"
-
- [19]: https://api.jquery.com/has-selector/ "jQuery Has selector"
-
- [21]: http://caniuse.com/#feat=css-has "Can I use browser support for Has"
-
- [23]: http://codepen.io/tomhodgins/pen/xOZGOq "This selector demo"
-
- [25]: http://codepen.io/tomhodgins/pen/VjeLjy "Parent selector demo"
-
- [27]: http://codepen.io/tomhodgins/pen/RRrPRy "Root selector demo"
-
- [29]: http://codepen.io/tomhodgins/pen/gMPpMd "Prev selector demo"
-
- [31]: http://codepen.io/tomhodgins/pen/PzZqzy "Next selector demo"
-
- [33]: https://blogs.msdn.microsoft.com/ie/2008/10/16/ending-expressions/ "MSDN Blogs Ending Expressions"
-
- [35]: https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/ "CSS specificity things you should know"
-
- [37]: https://www.smashingmagazine.com/2016/03/houdini-maybe-the-most-exciting-development-in-css-youve-never-heard-of/ "Houdini may be the most exciting development in CSS youve never heard of"
-
- [39]: http://bradfrost.com/blog/post/atomic-web-design/ "Atomic web design"
-
- [41]: https://github.com/eqcss/eqcss "EQCSS on Github"
-
- [44]: http://elementqueries.com "element queries dot com"
-
- [46]: http://codepen.io/search/pens/?q=eqcss&limit=all&order=newest&depth=everything&show_forks=true "Pens on Codepen using EQCSS"
-
- [48]: http://codepen.io/pen?template=gagyrz "EQCSS batteries included template"
-
- [50]: http://elementqueries.com/repl.html
-
- [52]: https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
-
- [53]: https://twitter.com/intent/tweet?original_referer=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&source=tweetbutton&text=The%20Search%20For%20The%20Holy%20Grail%3A%20How%20I%20Ended%20Up%20With%20Element%20Queries%2C%20And%20How%20You%20Can%20Use%20Them%20Today&url=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/&via=smashingmag
-
- [54]: http://www.facebook.com/sharer/sharer.php?u=https://www.smashingmagazine.com/2016/07/how-i-ended-up-with-element-queries-and-how-you-can-use-them-today/
-
+ [media-queries-are-not-the-answer]: https://www.smashingmagazine.com/2013/06/media-queries-are-not-the-answer-element-query-polyfill "Media Queries Are Not The Answer: Element Query Polyfill"
+ [eqcss-logo]: img/eqcss-logo-opt.png "Логотип EQCSS"
+ [eqcss-gh]: https://github.com/eqcss/eqcss "EQCSS на GitHub"
+ [wicg]: https://discourse.wicg.io/t/element-queries/26 "Тред форума WICG Discourse овыражениях для элементов"
+ [mit-license]: https://tldrlegal.com/license/mit-license "Лицензия MIT на TLDR Legal"
+ [eqcss]: http://elementqueries.com/EQCSS.js "EQCSS.js"
+ [css-has]: https://drafts.csswg.org/selectors-4/#relational "Описание Has в CSS Selectors Level 4"
+ [jquery-has]: https://api.jquery.com/has-selector/ "Селектор Has jQuery"
+ [caniuse-has]: http://caniuse.com/#feat=css-has "Поддержка Has на caniuse"
+ [MeKwaY]: http://codepen.io/tomhodgins/pen/MeKwaY "Демо: Минимальная ширина в пикселях"
+ [ezJNpp]: http://codepen.io/tomhodgins/pen/ezJNpp "Демо: Минимальная ширина в процентах"
+ [EyPjVg]: http://codepen.io/tomhodgins/pen/EyPjVg "Демо: Максимальная ширина в пикселях"
+ [oLbXzG]: http://codepen.io/tomhodgins/pen/oLbXzG "Демо: Максимальная ширина в процентах"
+ [PzZqPd]: http://codepen.io/tomhodgins/pen/PzZqPd "Демо: Минимальная высота в пикселях"
+ [KMVpdO]: http://codepen.io/tomhodgins/pen/KMVpdO "Демо: Минимальная высота в процентах"
+ [EyPjPg]: http://codepen.io/tomhodgins/pen/EyPjPg "Демо: Максимальная высота в пикселях"
+ [xOZGZg]: http://codepen.io/tomhodgins/pen/xOZGZg "Демо: Максимальная высота в процентах"
+ [vKLOLd]: http://codepen.io/tomhodgins/pen/vKLOLd "Демо: Минимальное количество символов на блочных элементах"
+ [OXMVMB]: http://codepen.io/tomhodgins/pen/OXMVMB "Демо: Минимальное количество символов на элементах формы"
+ [pbgJyz]: http://codepen.io/tomhodgins/pen/pbgJyz "Демо: Максимальное количество символов на блочных элементах"
+ [MeKwyY]: http://codepen.io/tomhodgins/pen/MeKwyY "Демо: Максимальное количество символов на элементах формы"
+ [JKGdXN]: http://codepen.io/tomhodgins/pen/JKGdXN "Демо: Минимальное количество строк"
+ [oLbXxG]: http://codepen.io/tomhodgins/pen/oLbXxG "Демо: Максимальное количество строк"
+ [dXGoMZ]: http://codepen.io/tomhodgins/pen/dXGoMZ "Демо: Минимальное количество дочерних элементов"
+ [mEVJPK]: http://codepen.io/tomhodgins/pen/mEVJPK "Демо: Максимальное количество дочерних элементов"
+ [OXMVNa]: http://codepen.io/tomhodgins/pen/OXMVNa "Демо: Минимальная прокрутка по Y"
+ [beEdpZ]: http://codepen.io/tomhodgins/pen/beEdpZ "Демо: Максимальная прокрутка по Y"
+ [ZOQGOb]: http://codepen.io/tomhodgins/pen/ZOQGOb "Демо: Минимальная прокрутка по X"
+ [ezJNzJ]: http://codepen.io/tomhodgins/pen/ezJNzJ "Демо: Максимальная прокрутка по X"
+ [xOZGOq]: http://codepen.io/tomhodgins/pen/xOZGOq "Демо: Селектор $this"
+ [VjeLjy]: http://codepen.io/tomhodgins/pen/VjeLjy "Демо: Селектор $parent"
+ [RRrPRy]: http://codepen.io/tomhodgins/pen/RRrPRy "Демо: Селектор $root"
+ [gMPpMd]: http://codepen.io/tomhodgins/pen/gMPpMd "Демо: Селектор $prev"
+ [PzZqzy]: http://codepen.io/tomhodgins/pen/PzZqzy "Демо: Селектор $next"
+ [WxrvxB]: http://codepen.io/tomhodgins/pen/WxrvxB "Демо: Eval"
+ [ending-expressions]: https://blogs.msdn.microsoft.com/ie/2008/10/16/ending-expressions/ "Блоги MSDN, конец поддержки выражений"
+ [css-specificity]: https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/ "Вещи о специфичности CSS, которые вам следует знать"
+ [houdini]: https://www.smashingmagazine.com/2016/03/houdini-maybe-the-most-exciting-development-in-css-youve-never-heard-of/ "Houdini возможно самая удивительная разработка в CSS, о которой вы не слышали"
+ [atomic-web-design]: http://bradfrost.com/blog/post/atomic-web-design/ "Атомарный веб-дизайн"
+ [aspect-ratio]: http://elementqueries.com/demos/aspect-ratio.html "Адаптивное соотношение сторон"
+ [scroll-header]: http://elementqueries.com/demos/scroll-header.html "Заголовок, прилипающий при прокрутке"
+ [blockquote-style]: http://elementqueries.com/demos/blockquote-style.html "Стиль цитат"
+ [calendar]: http://elementqueries.com/demos/calendar.html "Календарь"
+ [content-blocks]: http://elementqueries.com/demos/content-blocks.html "Блоки содержимого"
+ [counting-children]: http://elementqueries.com/demos/counting-children.html "Подсчёт дочерних элементов"
+ [date]: http://elementqueries.com/demos/date.html "Дата"
+ [element-query-demo]: http://elementqueries.com/demos/element-query-demo.html "Демо в стиле Цастрова"
+ [flyout]: http://elementqueries.com/demos/flyout.html "Выплывающий блок"
+ [headline]: http://elementqueries.com/demos/headline.html "Адаптивные заголовки"
+ [media-player]: http://elementqueries.com/demos/media-player.html "Медиаплеер"
+ [message-style]: http://elementqueries.com/demos/message-style.html "Сообщения"
+ [modal]: http://elementqueries.com/demos/modal.html "Диалоговое окно"
+ [nav]: http://elementqueries.com/demos/nav.html "Навигация"
+ [parent]: http://elementqueries.com/demos/parent.html "Применение стилей к родителю"
+ [pricing-chart]: http://elementqueries.com/demos/pricing-chart.html "Страница расценок"
+ [responsive-table]: http://elementqueries.com/demos/responsive-table.html "Адаптивная таблица"
+ [blocker]: http://elementqueries.com/demos/blocker.html "Блокер при прокрутке"
+ [signup-form]: http://elementqueries.com/demos/signup-form.html "Форма регистрации"
+ [testimonial]: http://elementqueries.com/demos/testimonial.html "Блок отзывов"
+ [tweet-counter]: http://elementqueries.com/demos/tweet-counter.html "Счётчик символов твита"
+ [variables]: http://elementqueries.com/demos/variables.html "Переменные JS"
+ [video-scaling]: http://elementqueries.com/demos/video-scaling.html "Адаптивное масштабирование"
+ [geometric]: http://elementqueries.com/demos/geometric.html "Геометрический дизайн"
+ [order-form]: http://elementqueries.com/demos/order-form.html "Адаптивная форма заказа"
+ [element-query-grid]: http://elementqueries.com/demos/element-query-grid.html "Сетка на выражениях для элементов"
+ [js-functions-demo]: http://elementqueries.com/demos/js-functions-demo.html "Функции JS в CSS"
+ [responsive-waterfall]: http://elementqueries.com/demos/responsive-waterfall.html "Адаптивное содержимое"
+ [eqcss-demos]: https://github.com/eqcss/eqcss#element-query-demos "Список демо"
+ [elementqueries]: http://elementqueries.com "element queries dot com"
+ [eqcss-codepen]: http://codepen.io/search/pens/?q=eqcss&limit=all&order=newest&depth=everything&show_forks=true "Демо на Codepen с использованием EQCSS"
+ [codepen-template]: http://codepen.io/pen?template=gagyrz "Шаблон EQCSS: Батарейки прилагаются!"
+ [repl]: http://elementqueries.com/repl.html "EQCSS REPL"
